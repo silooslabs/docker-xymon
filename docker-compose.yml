@@ -1,0 +1,21 @@
+version: "3.5"
+
+services:
+  xymon:
+    image: ghcr.io/silooslabs/xymon:main
+    ports:
+      - 80:80
+      - 1984:1984
+    volumes:
+      - xymon-config:/etc/xymon
+      - xymon-data:/var/lib/xymon
+    environment:
+      TZ: America/New_York
+      SSMTP_mailhub: mail.example.com
+      SSMTP_AuthUser: user
+      SSMTP_AuthPass: password
+      SSMTP_AuthMethod: LOGIN
+      SSMTP_UseTLS: "Yes"
+volumes:
+  xymon-config:
+  xymon-data:
